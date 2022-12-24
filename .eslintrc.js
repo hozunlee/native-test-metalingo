@@ -46,6 +46,6 @@ module.exports = {
 			},
 		],
 		'simple-import-sort/exports': 'error',
-		'linebreak-style': ['error', 'unix'],
+		'linebreak-style': (0)[('error', 'window')],
 	},
 }
