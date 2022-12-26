@@ -1,6 +1,6 @@
 import styled, { css } from '@emotion/native'
 import { useRef, useState } from 'react'
-import { Animated, Button, Dimensions, Text, View } from 'react-native'
+import { Animated, Dimensions, Pressable, Text, View } from 'react-native'
 
 import { STATUS, SwipeablePanel } from '@app/components/SwipeablePanel'
 import WeeksPurpose from '@app/components/WeeksPurpose'
@@ -10,6 +10,8 @@ const HomeScreen: React.FC = () => {
 	const [panelStatus, setPanelStatus] = useState(2)
 	const panelHeight = Dimensions.get('window').height * 0.8
 	const minimizedHeight = Dimensions.get('window').height * 0.35
+	// const weekBtnWidth = (Dimensions.get('window').width - 8) / 7
+
 	const opacityAnim = useRef(new Animated.Value(0.5)).current
 
 	const [panelProps, setPanelProps] = useState({
@@ -101,7 +103,7 @@ const HomeScreen: React.FC = () => {
 					<View
 						style={[
 							css`
-								flex: 0.3;
+								flex: 0.35;
 								/* flex-direction: row; */
 								/* justify-content: flex-end; */
 								// background-color: red;
@@ -129,7 +131,33 @@ const HomeScreen: React.FC = () => {
 							purpose={userData.targetDaysPerMonth}
 						/>
 					</MyPurposeContainer>
-					<Button title="시작하기" />
+					<Pressable
+						onPress={() => {
+							console.log('축하해요')
+						}}
+						style={({ pressed }) => [
+							css`
+								border-radius: 10px;
+								align-items: center;
+								justify-content: center;
+								height: 40px;
+							`,
+							{
+								backgroundColor: pressed ? '#7D8491' : '#62e295',
+							},
+						]}
+					>
+						{({ pressed }) => (
+							<Text
+								style={css`
+									font-weight: 800;
+									/* font-size: 20px; */
+								`}
+							>
+								{pressed ? 'metalingo 화이팅!' : '시작하기'}
+							</Text>
+						)}
+					</Pressable>
 				</View>
 			</SwipeablePanel>
 		</View>
@@ -139,10 +167,16 @@ const HomeScreen: React.FC = () => {
 export default HomeScreen
 
 const MyPurposeContainer = styled.View`
-	/* flex: 1; */
+	flex: 0.4;
 	padding-top: 30px;
 	flex-direction: row;
 	/* border: 1px solid red; */
 	justify-content: space-around;
 	/* align-items: center; */
+`
+
+const Btn = styled.Pressable`
+	background-color: '#62e295';
+	justify-content: 'center';
+	align-items: 'center';
 `
