@@ -10,7 +10,14 @@ interface IProps {
 	purpose: number
 }
 
-const timeUnit = {
+interface ITimeUnit {
+	[index: string]: string[]
+	// TODAY: string[]
+	// WEEK: string[]
+	// MONTH: string[]
+}
+
+const timeUnit: ITimeUnit = {
 	TODAY: ['오늘의', '분'],
 	WEEK: ['이번 주', '일'],
 	MONTH: ['이번 달의', '일'],
@@ -20,8 +27,10 @@ const MyPurpose = ({ title, doing, purpose }: IProps) => {
 	return (
 		<View>
 			<Text>{title && timeUnit[title][0]} 목표</Text>
+
 			<PurposeDetail>
 				<CircularProgress
+					value={(doing / purpose) * 100}
 					title={`${doing}/${purpose}${timeUnit[title][1]}`}
 					activeStrokeColor={'#62e295'}
 					valueSuffix={'%'}

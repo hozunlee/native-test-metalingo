@@ -1,7 +1,14 @@
 import styled, { css } from '@emotion/native'
 import { Dimensions, useWindowDimensions, View } from 'react-native'
 
-const weeks = [
+interface IWeeks {
+	day: string
+	value: string
+	id: number
+	today: false
+}
+
+const weeks: IWeeks = [
 	{ day: '월', value: `100%`, id: 0, today: false },
 	{ day: '화', value: `0%`, id: 1, today: false },
 	{ day: '수', value: `100%`, id: 2, today: false },
@@ -12,11 +19,7 @@ const weeks = [
 ]
 
 const WeeksPurpose = () => {
-	const weekBtnWidth = (Dimensions.get('window').width - 8) / 7
-	console.log(
-		'🚀 ~ file: WeeksPurpose.tsx:8 ~ WeeksPurpose ~ weekBtnWidth',
-		weekBtnWidth,
-	)
+	// const weekBtnWidth = (Dimensions.get('window').width - 8) / 7
 
 	return (
 		<WeekContainer
@@ -32,7 +35,7 @@ const WeeksPurpose = () => {
 								css`
 								height: ${day?.value};
 								
-								{backgroundColor: day.today ? '#7D8491' : red}`,
+								{backgroundColor: ${day.today} ? '#7D8491' : red}`,
 							]}
 						></ValueView2>
 						<Day>{day.day}</Day>
