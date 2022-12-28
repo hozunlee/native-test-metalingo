@@ -20,27 +20,14 @@ const MyPurpose = ({ title, doing, purpose }: IProps) => {
 	return (
 		<View>
 			<Text>{title && timeUnit[title][0]} 목표</Text>
-
 			<PurposeDetail>
-				{/* <Text>{doing}</Text>
-					<Text>
-						/{purpose}
-						{timeUnit[title][1]}
-					</Text> */}
 				<CircularProgress
-					// titleFontSize={5}
-					value={(doing / purpose) * 100}
 					title={`${doing}/${purpose}${timeUnit[title][1]}`}
 					activeStrokeColor={'#62e295'}
-					// activeStrokeSecondaryColor={'#004643'}
 					valueSuffix={'%'}
 					progressValueStyle={{ color: '#0C1618' }}
 					titleStyle={{ color: '#0C1618' }}
-					// inActiveStrokeWidth={5}
-					// activeStrokeWidth={6}
 					radius={38}
-
-					// activeStrokeWidth={12}
 				/>
 			</PurposeDetail>
 		</View>
@@ -51,7 +38,6 @@ export default MyPurpose
 
 const PurposeDetail = styled.View`
 	margin-top: 10px;
-	/* flex-direction: row; */
 `
 
 const CircleView = styled.View``
